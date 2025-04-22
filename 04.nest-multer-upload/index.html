@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+</head>
+<body>
+单文件：
+<input id="fileInput" type="file"/>
+<br>
+多文件：
+<input id="fileInput2" type="file" multiple/>
+<br>
+多字段：
+<input id="fileInput3" type="file" multiple/>
+<br>
+未知File字段：
+<input id="fileInput4" type="file" multiple/>
+<br>
+校验文件大小-自定义Pipe：
+<input id="fileInput5" type="file" multiple/>
+
+<br>
+校验文件大小 - Nest原生Pipe：
+<input id="fileInput6" type="file" multiple/>
+
+<br>
+校验文件大小 - 自定义校验器：
+<input id="fileInput7" type="file" multiple/>
+
+<script>
+  const fileInput = document.querySelector('#fileInput');
+  const fileInput2 = document.querySelector('#fileInput2');
+  const fileInput3 = document.querySelector('#fileInput3');
+  const fileInput4 = document.querySelector('#fileInput4');
+  const fileInput5 = document.querySelector('#fileInput5');
+  const fileInput6 = document.querySelector('#fileInput6');
+  const fileInput7 = document.querySelector('#fileInput7');
+
+  async function formData() {
+    const data = new FormData();
+    data.set('name','光');
+    data.set('age', 20);
+    data.set('aaa', fileInput.files[0]);
+
+    const res = await axios.post('http://localhost:3000/aaa', data);
+    console.log(res);
+  }
+
+  fileInput.onchange = formData;
+
+
+  async function formData2() {
+    const data = new FormData();
+    data.set('name','光');
+    data.set('age', 20);
+    [...fileInput2.files].forEach(item => {
+      data.append('bbb', item)
+    })
+
+    const res = await axios.post('http://localhost:3000/bbb', data);
+    console.log(res);
+  }
+
+  fileInput2.onchange = formData2;
+
+  async function formData3() {
+    const data = new FormData();
+    data.set('name','光');
+    data.set('age', 20);
+    data.append('aaa', fileInput3.files[0]);
+    data.append('aaa', fileInput3.files[1]);
+    data.append('bbb', fileInput3.files[2]);
+    data.append('bbb', fileInput3.files[3]);
+
+    const res = await axios.post('http://localhost:3000/ccc', data);
+    console.log(res);
+  }
+
+  fileInput3.onchange = formData3;
+
+
+  async function formData4() {
+    const data = new FormData();
+    data.set('name','光');
+    data.set('age', 20);
+    data.set('aaa', fileInput4.files[0]);
+    data.set('bbb', fileInput4.files[1]);
+    data.set('ccc', fileInput4.files[2]);
+    data.set('ddd', fileInput4.files[3]);
+
+    const res = await axios.post('http://localhost:3000/ddd', data);
+    console.log(res);
+  }
+
+  fileInput4.onchange = formData4;
+
+
+  async function formData5() {
+    const data = new FormData();
+    data.set('name','光');
+    data.set('age', 20);
+    data.set('aaa', fileInput5.files[0]);
+
+    const res = await axios.post('http://localhost:3000/eee', data);
+    console.log(res);
+  }
+
+  fileInput5.onchange = formData5;
+
+  async function formData6() {
+    const data = new FormData();
+    data.set('name','光');
+    data.set('age', 20);
+    data.set('aaa', fileInput6.files[0]);
+
+    const res = await axios.post('http://localhost:3000/fff', data);
+    console.log(res);
+  }
+
+  fileInput6.onchange = formData6;
+
+  async function formData7() {
+    const data = new FormData();
+    data.set('name','光');
+    data.set('age', 20);
+    data.set('aaa', fileInput7.files[0]);
+
+    const res = await axios.post('http://localhost:3000/hhh', data);
+    console.log(res);
+  }
+
+  fileInput7.onchange = formData7;
+
+</script>
+</body>
+</html>
