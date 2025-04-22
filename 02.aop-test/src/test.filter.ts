@@ -15,7 +15,7 @@ export class TestFilter implements ExceptionFilter {
 
     response.status(400).json({
       statusCode: 400,
-      message: 'test: ' + exception.message,
+      message: 'test-filter: ' + exception.message,
     });
   }
 }
