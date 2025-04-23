@@ -21,10 +21,16 @@
   多文件多字段校验上传：
   <input id="multiple-fileInput2" type="file" multiple/>
 </div>
+
+<div>
+  文件名：
+  <input id="multiple-fileInput3" type="file" multiple/>
+</div>
 <script>
   const fileInput = document.querySelector('#fileInput');
   const multipleFileInput = document.querySelector('#multiple-fileInput');
   const multipleFileInput2 = document.querySelector('#multiple-fileInput2');
+  const multipleFileInput3 = document.querySelector('#multiple-fileInput3');
 
   async function formData() {
     const data = new FormData();
@@ -59,15 +65,31 @@
     const data = new FormData();
     data.set('name','光');
     data.set('age', 20);
-    data.append('aaa', fileInput.files[0]);
-    data.append('aaa', fileInput.files[1]);
-    data.append('bbb', fileInput.files[2]);
-    data.append('bbb', fileInput.files[3]);
+    data.append('aaa', multipleFileInput2.files[0]);
+    data.append('aaa', multipleFileInput2.files[1]);
+    data.append('bbb', multipleFileInput2.files[2]);
+    data.append('bbb', multipleFileInput2.files[3]);
 
     const res = await axios.post('http://localhost:3333/ccc', data);
     console.log(res);
   }
   multipleFileInput2.onchange = formData3
+
+  async function formData4() {
+    const data = new FormData();
+    data.set('name','光');
+    data.set('age', 20);
+    data.set('aaa', multipleFileInput3.files[0]);
+    data.set('bbb', multipleFileInput3.files[1]);
+    data.set('ccc', multipleFileInput3.files[2]);
+    data.set('ddd', multipleFileInput3.files[3]);
+
+    const res = await axios.post('http://localhost:3333/ddd', data);
+    console.log(res);
+  }
+
+  multipleFileInput3.onchange = formData4
+
 </script>
 </body>
 </html>
