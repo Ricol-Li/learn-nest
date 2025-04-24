@@ -1,8 +1,8 @@
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter} from 'react-router-dom';
-import { Login } from '../pages/Login';
-import { Register } from '../pages/Register';
-import { BookManage } from '../pages/BookManage';
+import { Login } from './pages/Login';
+import { Register } from './pages/Register';
+import { BookManage } from './pages/BookManage';
 
 
 
